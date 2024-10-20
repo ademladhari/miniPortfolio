@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 import HeaderSection from './components/header';
 import Intro from './components/intro';
 import ArtistSection from './components/artisticSection';
@@ -9,39 +8,29 @@ import DesignShowcaseCard from './components/Work';
 import SocialMediaLinks from './components/SocialMediaLinks';
 
 const CustomShape = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
-    <div className="min-h-screen w-full bg-[#f9f1f0] overflow-x-hidden flex flex-col p-4">
-      {/* Header Section */}
+    <div className="h-screen w-full bg-[#f9f1f0] overflow-hidden flex flex-col">
+      {/* Red Section */}
       <motion.div 
-        initial={{ scale: 0.4, y: '50%', opacity: 0 }}
-        animate={{ scale: 1, y: '0', opacity: 1 }}
-        transition={{
-          scale: { duration: 1 },
-          y: { delay: 1.7, duration: 0.6 },  
-          opacity: { delay: 1.7, duration: 1 }  
-        }}
-        className="w-full mb-4"
+       initial={{ scale: 0.4, x: '0', y: '50%', opacity: 0 }}
+       animate={{ scale: 1, x: '0', y: '0', opacity: 1 }}
+       transition={{
+         scale: { duration: 1 },
+         x: { delay: 1.7, duration: 0.6 },  
+         y: { delay: 1.7, duration: 0.6 },  
+         opacity: { delay: 1.7, duration: 1 }
+       }}
+       className="w-[98%] h-auto sm:h-[8%] my-4 mx-auto"  // Adjust height for mobile
       >
         <HeaderSection />
       </motion.div>
 
       {/* Main Content */}
-      <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-4`}>
-        {/* Left Side / Top on Mobile */}
-        <div className={`${isMobile ? 'w-full' : 'w-[70%]'} flex flex-col gap-4`}>
-          {/* Intro and Portrait */}
-          <section className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-4`}>
+      <div className="sm:h-[90%] h-auto w-[98%] mx-auto flex flex-col md:flex-row justify-between items-center">
+        {/* Left Side */}
+        <div className="w-full md:w-[70%] h-auto sm:h-[98%]  flex flex-col justify-between gap-4">
+          {/* Top Section */}
+          <section className="w-full h-auto sm:h-[59%] flex flex-col md:flex-row justify-center gap-2">
             <motion.div
               initial={{ scale: 0.2, x: '50%', y: '20%', opacity: 0 }}
               animate={{ scale: 1, x: '0', y: '0', opacity: 1 }}
@@ -51,12 +40,14 @@ const CustomShape = () => {
                 y: { delay: 1.3, duration: 0.6 },
                 opacity: { delay: 1.3, duration: 1 }
               }}
-              className={`${isMobile ? 'w-full' : 'w-[66%]'} z-0 relative`}
+              className="w-full md:w-[66%] z-0 relative"  // Responsive height for mobile
             >
               <Intro />
             </motion.div>
+
+            {/* Animated Image */}
             <motion.div
-              className={`${isMobile ? 'w-full h-64' : 'w-[32%]'} flex justify-center items-center`}
+              className="w-full md:w-[32%] flex justify-center relative z-10 items-center "  // Adjust height for mobile
               initial={{ scale: 1.7, x: '-50%', y: '20%', opacity: 0 }}
               animate={{ scale: 1, x: '0', y: '0', opacity: 1 }}
               transition={{
@@ -67,15 +58,15 @@ const CustomShape = () => {
               }}
             >
               <img
-                className="w-full h-full object-cover rounded-2xl"
+                className="w-full h-full object-cover rounded-2xl"  // Make image height responsive
                 src={portrait}
                 alt="Portrait"
               />
             </motion.div>
           </section>
 
-          {/* Artist and Contact Sections */}
-          <section className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-4`}>
+          {/* Bottom Section */}
+          <section className="w-full h-auto sm:h-[39%] flex flex-col md:flex-row gap-2">
             <motion.div
               initial={{ scale: 0.1, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -83,10 +74,11 @@ const CustomShape = () => {
                 scale: { delay: 1, duration: 1 },
                 opacity: { delay: 1, duration: 1 }
               }}
-              className={`${isMobile ? 'w-full' : 'w-[49%]'}`}
+              className="w-full md:w-[49%] h-auto sm:h-full"  // Adjust height for mobile
             >
               <ArtistSection />
             </motion.div>
+
             <motion.div
               initial={{ scale: 0.2, x: '20%', y: '-50%', opacity: 0 }}
               animate={{ scale: 1, x: '0', y: '0', opacity: 1 }}
@@ -96,15 +88,15 @@ const CustomShape = () => {
                 y: { delay: 1.3, duration: 0.6 },
                 opacity: { delay: 1, duration: 1 }
               }}
-              className={`${isMobile ? 'w-full' : 'w-[49%]'} relative -z-0`}
+              className="w-full md:w-[49%] relative mb-2 md:mb-0 h-auto sm:h-full"  // Adjust height for mobile
             >
               <ContactCard />
             </motion.div>
           </section>
         </div>
 
-        {/* Right Side / Bottom on Mobile */}
-        <section className={`${isMobile ? 'w-full' : 'w-[30%]'} flex flex-col gap-4`}>
+        {/* Right Side */}
+        <section className="w-full md:w-[30%] h-auto sm:h-[98%] flex flex-col justify-between gap-4">
           <motion.div
             initial={{ scale: 0.2, x: '-50%', y: '0', opacity: 0 }}
             animate={{ scale: 1, x: '0', y: '0', opacity: 1 }}
@@ -114,19 +106,21 @@ const CustomShape = () => {
               y: { delay: 1.3, duration: 0.6 },
               opacity: { delay: 1, duration: 1 }
             }}
-            className={`${isMobile ? 'h-96' : 'h-[90%]'}`}
+            className="h-auto md:h-[90%]"  // Set responsive height
           >
             <DesignShowcaseCard />
           </motion.div>
+
           <motion.div
-            initial={{ scale: 0.5, y: '-70%', opacity: 0 }}
-            animate={{ scale: 1, y: '0', opacity: 1 }}
+            initial={{ scale: 0.5, x: '0%', y: '-70%', opacity: 0 }}
+            animate={{ scale: 1, x: '0%', y: '0', opacity: 1 }}
             transition={{
               scale: { delay: 1, duration: 1 },
+              x: { delay: 2.1, duration: 0.6 },
               y: { delay: 2.1, duration: 0.6 },
               opacity: { delay: 2.1, duration: 1 }
             }}
-            className="h-[10%]"
+            className="h-auto md:h-[10%]"  // Adjust height for mobile
           >
             <SocialMediaLinks />
           </motion.div>
