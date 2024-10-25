@@ -26,7 +26,7 @@ const CustomShape = () => {
       </motion.div>
 
       {/* Main Content */}
-      <div className="sm:h-[90%] h-auto w-[98%] mx-auto flex flex-col md:flex-row justify-between items-center">
+      <div className="sm:h-[88%] h-auto w-[98%] mx-auto  flex flex-col md:flex-row justify-between items-center">
         {/* Left Side */}
         <div className="w-full md:w-[70%] h-auto sm:h-[98%]  flex flex-col justify-between gap-4">
           {/* Top Section */}
@@ -120,7 +120,7 @@ const CustomShape = () => {
               y: { delay: 2.1, duration: 0.6 },
               opacity: { delay: 2.1, duration: 1 }
             }}
-            className="h-auto md:h-[10%]"  // Adjust height for mobile
+            className="h-auto flex justify-center md:h-[10%]"  // Adjust height for mobile
           >
             <SocialMediaLinks />
           </motion.div>
